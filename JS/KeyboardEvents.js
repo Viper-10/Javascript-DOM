@@ -32,4 +32,9 @@ let keyEvent = (e) =>{
 // input.addEventListener('paste', keyEvent)
 // input.addEventListener('copy', keyEvent)
 
+// // copy, paste, cut all are inputs
+// input.addEventListener('input', keyEvent)
 
+const select = document.querySelector('select')
+
+select.addEventListener('change', keyEvent)
