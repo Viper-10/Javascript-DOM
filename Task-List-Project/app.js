@@ -117,7 +117,6 @@ const filterEvent = (e) =>{
 loadEventListeners(); 
 
 function loadEventListeners(){  
-
   document.addEventListener('DOMContentLoaded', getTasksFromLocalStorage)
   form.addEventListener('submit', addTask);
   ul.addEventListener('click', removeTask);  
