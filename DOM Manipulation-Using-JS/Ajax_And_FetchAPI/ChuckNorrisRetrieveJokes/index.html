@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <title>Chuck Norris Joke Generator</title>
+  <style>
+    form{
+      width : 500px; 
+      margin : auto;
+      border-radius : 4px; 
+      margin-top : 200px; 
+    }
+
+    form h5{
+      text-align : center; 
+    }
+
+    input{
+      width : 300px;
+      margin-left : 50px;      
+    }
+
+    .container{
+      margin : 50px;
+    }
+
+    
+    .jokes{
+      color : white; 
+      background : #333; 
+    }
+
+    .jokes{
+      list-style: none;
+    }
+
+  </style>
+</head>
+<body>
+    <form action="" style = "border: 1px solid #333">
+      <div class = "container">
+        <h5>Chuck Norris Joke Generator</h5>
+        <input type="number" name="number" placeholder="Number of jokes">
+        <br>
+        <input type="submit" value = "Submit">
+      </div>
+    </form>
+
+    <div id="jokes">
+
+    </div>
+
+    <script src = "app.js"></script>
+</body>
+</html>
