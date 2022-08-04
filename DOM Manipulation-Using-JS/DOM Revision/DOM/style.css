@@ -13,6 +13,15 @@
 section {
   margin-bottom: 4rem;
 }
+.prompt-message {
+  background-color: antiquewhite;
+  padding: 1rem;
+  width: max-content;
+  margin-inline: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  border-radius: 200px;
+}
 .container {
   width: min(90%, 70.5rem);
   text-align: center;

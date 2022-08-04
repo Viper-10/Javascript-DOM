@@ -27,12 +27,6 @@ function displayFriendsInConsole() {
     console.log(friend.textContent);
   });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  updateCounterValue(0);
-  guessInput.disabled = true;
-});
-
 const setProgressMessage = (message, color = "blue") => {
   progressMessage.textContent = message;
   progressMessage.style.color = color;
@@ -40,6 +34,7 @@ const setProgressMessage = (message, color = "blue") => {
 const updateCounterValue = (count) => {
   countValue = count;
   countSpan.textContent = count;
+  sessionStorage.setItem("counterValue", `${countValue}`);
 };
 const startgame = () => {
   guessNumber = Math.floor(Math.random() * 5);
@@ -103,6 +98,21 @@ const clickEventHandler = (event) => {
 function loadEventHandlers(event) {
   document.addEventListener("click", clickEventHandler);
   guessInput.addEventListener("keyup", guessInputChange);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const promptMessage = prompt("Hello, how're you doing???");
+    document
+      .querySelector(".prompt-message")
+      .append(document.createTextNode(`${promptMessage}`));
+
+    let value = sessionStorage.getItem("counterValue");
+    value = parseInt(value);
+    if (isNaN(value) || value === "" || value === null) {
+      value = 0;
+    }
+    updateCounterValue(value);
+    guessInput.disabled = true;
+  });
 }
 
 loadEventHandlers();
