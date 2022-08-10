@@ -1,9 +1,55 @@
 todos = [];
+let currPage = 0;
+const lastPage = 4;
 
-async function getPostsFromServer() {
+const prevButton = document.querySelector(".prev-button");
+const nextButton = document.querySelector(".next-button");
+
+prevButton.addEventListener("click", () => {
+  currPage -= 1;
+  getNext5Todos();
+});
+nextButton.addEventListener("click", () => {
+  currPage += 1;
+  getNext5Todos();
+});
+
+function renderFooter() {
+  (() => {
+    const pageSpan = document.querySelector(".page-number");
+    pageSpan.textContent = `${currPage + 1}/${lastPage + 1}`;
+  })();
+
+  if (currPage === 0) {
+    prevButton.disabled = true;
+  } else if (currPage === lastPage) {
+    nextButton.disabled = true;
+  } else {
+    prevButton.disabled = false;
+    nextButton.disabled = false;
+  }
+}
+function renderTodos() {
+  const list = document.getElementById("todo-list");
+
+  let todosJSX = ``;
+
+  todos.forEach((todo) => {
+    todosJSX += `<li class="todo-item">
+      <div class="todo-content">${todo.title}</div>
+            <div class="actions">
+              <div class="button delete-button">Delete</div>
+              <div class="button finish-button">Finish</div>
+              <div class="button edit-button">Edit</div>
+            </div>
+    </li>`;
+  });
+
+  list.innerHTML = todosJSX;
+}
+async function getTodosFromServer(currPage) {
   const todoIds = [];
-  const MAX_POSTS = 30;
-  for (let i = 1; i <= MAX_POSTS; ++i) {
+  for (let i = currPage * 5 + 1; i <= currPage * 5 + 5; ++i) {
     todoIds.push(i);
   }
 
@@ -16,8 +62,11 @@ async function getPostsFromServer() {
     })
   );
 }
-async function renderInitialPosts() {
-  await getPostsFromServer();
+async function getNext5Todos() {
+  await getTodosFromServer(currPage);
+
+  renderTodos();
+  renderFooter();
 }
 
-renderInitialPosts();
+getNext5Todos(currPage);
